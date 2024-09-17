@@ -5,5 +5,6 @@ public class Dummy {
         System.out.println("This is a kafka project");
         System.out.println("This is a second kafka project");
         System.out.println("A new branch is created");
+        System.out.println("This is plain git push");
     }
 }
