@@ -8,5 +8,7 @@ public class Dummy {
         System.out.println("This is plain git push");
         System.out.println("Commit using git commit command");
         System.out.println("Commit using git commit individual");
+        System.out.println("Now running on java 17");
+
     }
 }
