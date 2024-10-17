@@ -13,14 +13,12 @@ import java.util.Properties;
  */
 
 public class ProducerDemo {
+
+
     private static final Logger log = LoggerFactory.getLogger(ProducerDemo.class.getSimpleName());
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         log.info("this is printing from logger");
-
-
-        if (true) System.out.println("abc");
-        else System.out.println("else");
 
         // create Producer Properties
         Properties properties = new Properties();
@@ -29,15 +27,16 @@ public class ProducerDemo {
         //connect to localhost
         properties.setProperty("bootstrap.servers", "127.0.0.1:9092");
 
-        //connect to condktor
-        properties.setProperty("security.protocol", "SASL_SSL");
-        properties.setProperty("sasl.jaas.config", "SASL_SSL");
-        properties.setProperty("sasl.mechanism", "PLAIN");
+//        //connect to condktor
+//        properties.setProperty("security.protocol", "SASL_SSL");
+//        properties.setProperty("security.protocol", "SASL_SSL");
+//        properties.setProperty("sasl.jaas.config", "SASL_SSL");
+//        properties.setProperty("bootstrap.servers", "XXXX");
 
 
         //set producer properties
-        properties.setProperty("key.serializer", StringSerializer.class.getSimpleName());
-        properties.setProperty("value.serializer", StringSerializer.class.getSimpleName());
+        properties.setProperty("key.serializer", StringSerializer.class.getName());
+        properties.setProperty("value.serializer", StringSerializer.class.getName());
 
 
         // create the Producer
@@ -52,14 +51,15 @@ public class ProducerDemo {
         // send data
 
 
-        for (int j = 0; j < 10; j++) {
-            for (int i = 0; i < 30; i++) {
-                publishMesssage(producer, "demo_java", "hello world");
-            }
+//        for (int j = 0; j < 2; j++) {
+        for (int i = 0; i < 10; i++) {
+            String message = "Hello World_" + i;
+            publishMesssage(producer, "Star_Dust", message);
 
-            Thread.sleep(500);
 
         }
+//            Thread.sleep(1000);
+//        }
 
 
         //tell the producer to send all the data and block until done -- synchronous
@@ -78,9 +78,9 @@ public class ProducerDemo {
 
         producer.send(producerRecord, (recordMetadata, e) -> {
             if (e == null) log.info("Received meta data \n" +
-                    "Topic : " + recordMetadata.topic() +
-                    "Partition : " + recordMetadata.partition() +
-                    "Offset : " + recordMetadata.offset() +
+                    "Topic : " + recordMetadata.topic() + "\n" +
+                    "Partition : " + recordMetadata.partition() + "\n" +
+                    "Offset : " + recordMetadata.offset() + "\n" +
                     "Timestamp : " + recordMetadata.timestamp());
             else log.info("Error while producing", e);
         });
