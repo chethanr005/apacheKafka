@@ -54,7 +54,7 @@ public class ProducerDemo {
 //        for (int j = 0; j < 2; j++) {
         for (int i = 0; i < 10; i++) {
             String message = "Hello World_" + i;
-            publishMesssage(producer, "Star_Dust", message);
+            publishMesssage(producer, "Moon_Dust", message);
 
 
         }
