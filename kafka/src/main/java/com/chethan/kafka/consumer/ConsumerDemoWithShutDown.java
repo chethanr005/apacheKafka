@@ -42,12 +42,12 @@ public class ConsumerDemoWithShutDown {
         final Thread mainThread = Thread.currentThread();
 
         //adding the shutdown hook
-        Runtime.getRuntime().addShutdownHook(new Thread(){
+        Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
                 log.info("Detected a shutdown, let's exit by calling consumer.wakeup()...");
-                consumer.wakeup();
                 try {
+                    consumer.wakeup();
                     mainThread.join();
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
@@ -70,9 +70,9 @@ public class ConsumerDemoWithShutDown {
                     log.info("key: " + record.key() + ", value: " + record.value() + "partition: " + record.partition() + ", offset: " + record.offset());
                 }
             }
-        } catch (WakeupException w){
+        } catch (WakeupException w) {
             log.info("Consumer is starting to shutdown");
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error("Unexpected exception in the consumer");
         } finally {
             consumer.close();
