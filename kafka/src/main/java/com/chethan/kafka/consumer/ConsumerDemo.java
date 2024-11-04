@@ -38,17 +38,18 @@ public class ConsumerDemo {
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
 
 
-        consumer.subscribe(Arrays.asList("Star_Dust"));
+        consumer.subscribe(Arrays.asList("Moon_Dust"));
 
 
         while (true) {
 
-
+            int c = 0;
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(2000));
 
 
             for (ConsumerRecord<String, String> record : records) {
-                log.info("key: " + record.key() + ", value: " + record.value() + "partition: " + record.partition() + ", offset: " + record.offset());
+                c = c + 1;
+                log.info("key: " + record.key() + ", value: " + record.value() + "partition: " + record.partition() + ", offset: " + record.offset() + ", Message count: " + c);
             }
         }
 
