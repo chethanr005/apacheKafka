@@ -1,4 +1,4 @@
-package com.chethan.kafka;
+package kafka;
 
 public class Dummy {
     public static void main(String[] args) {

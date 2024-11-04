@@ -1,4 +1,4 @@
-package com.chethan.kafka.consumer;
+package kafka.consumer;
 
 /**
  * Created by Chethan on Oct 29, 2024.

@@ -1,4 +1,4 @@
-package com.chethan.kafka.consumer;
+package kafka.consumer;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
